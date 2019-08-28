@@ -1,10 +1,10 @@
 # nilmdata
 
 ## 5 Different Scenarios: 
-- Single Appliances without Switching Events 
-- Single Appliances with Switching Events
-- Multi Appliance Recording
-- Without Superposition of Loads
-- With Superposition of Loads
-- Extended Single Appliance Detection
-- Switching Event Collection
+1. Single Appliances without Switching Events 
+2. Single Appliances with Switching Events
+3. Multi Appliance Recording
+3.1 Without Superposition of Loads
+3.2 With Superposition of Loads
+4. Extended Single Appliance Detection
+5. Switching Event Collection
