@@ -1,0 +1,10 @@
+WithoutSwitchingEvents-30s-Cold-5pm-emma-router
+averaging over 20khz
+voltage resistors updated to 3.3k for r21, r24
+current resistors updated to 150k for r29, r33
+
+monitor 60% brightness, showed wallpaper
+laptop ~30%
+cellphonecharger = bose charger on iphone, battery levels vary
+
+microwave: with water inside, started measurement <10s after turning on (after making turning on sound)

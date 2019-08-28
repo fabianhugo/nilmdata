@@ -1,0 +1,17 @@
+WithSwitchingEvents-30s-Cold-11am-emma-router
+updated resistors: 3.3k; 150k;
+20khz avg
+duration:30s
+on duration: 15s
+switch on time: 15s
+
+switching of no-switch devices done with multisocket switch
+
+laptop brightness 80%, just recording, battery full
+monitor brightness 60%, wallpaper
+cellphonecharger = bose charger on iphone, battery levels vary
+
+microwave with water inside
+
+ps:
+the book below the measurement laptop was removed, so laptop is directly on table now

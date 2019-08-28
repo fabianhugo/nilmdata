@@ -1,0 +1,13 @@
+Order10-15s-165s-1pm
+updated resistors: 3.3k; 150k;
+20khz avg
+
+Per Appliance On Time 15s, switching all on sequantially, switching off all sequentally
+Order10: Heatbulb, Fan2, Fluorescent Light, Laptopcharger, Kettle
+
+switching of no-switch devices done with multisocket switch
+
+laptop brightness 80%, just recording, battery full
+
+
+

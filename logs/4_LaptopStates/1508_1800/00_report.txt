@@ -1,0 +1,21 @@
+matia hp laptop:
+1minute recordings of no load change
+active cores checked with task manager and logical cores overview
+- idle
+- 1 thread but 2 cores active ~40%
+- 2 threads but 3 cores active ~70%
+- 3 threads but 4 cores active 
+specs matia:
+amd a8 5550m apu with radeon graphics
+16gb ram
+brightness 50
+wlan enabled without internet connection
+
+
+hugo samsung laptop:
+
+50percent brightness
+video = honour https://vimeo.com/353671474 
+wifi enabled connected to internet for video 
+for others wifi not enabled
+cpu stress -c {1,2,3,4}
