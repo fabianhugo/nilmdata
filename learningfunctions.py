@@ -17,7 +17,7 @@ from sklearn.svm import SVC
 from matplotlib import pyplot as plt
 import scikitplot as skplt
 import pandas as pd
-from fileutils import getfilelist, labeldict
+from fileutils import getfilelist, labeldict, labellist
 from features import columns
 
 from os import path, makedirs
@@ -70,18 +70,31 @@ def evaluate(y_true, y_pred, labellist, plotconfusionmatrix=False):
 #        plt.show()
 
     
-def scatterplot(labellist, df):
+def scatterplot(df):
+    labelsublist = [x for x in labellist if 'samsung' not in x and 'no load' not in x and 'hp' not in x and 'microwave' not in x]
+#    labelsublist = ['laptop', 'idlehp', '1threadhp', '2threadshp', '3threadshp', 'idlesamsung', '1threadsamsung', '2threadssamsung', '3threadssamsung', '4threadssamsung', 'videosamsung']
     fig, ax = plt.subplots()
     hsv = plt.get_cmap('hsv')
-    colors = hsv(np.linspace(0, 1.0, len(labellist)))
-    for i,label in enumerate(labellist[1:]):
-        if (label!='fluorescentlight'):
-            ax.scatter(df[df['label']==label]['real_power'], df[df['label']==label]['reactive_power'], label=labellist[i], color=colors[i])
-            ax.legend()
-    
+    colors = hsv(np.linspace(0, 1.0, len(labelsublist)))
+    for i,label in enumerate(labelsublist):
+        ax.scatter(df[df['label']==labellist.index(label)].real01, df[df['label']==labellist.index(label)].imag01, label=label, color=colors[i])
+        ax.legend()
+    plt.xlabel('Active Power [W]')
+    plt.ylabel('Reactive Power [var]')
     plt.show()
 
-
+def scatterplot1d(df):
+    labelsublist = labellist[0:13]
+#    labelsublist = [x for x in labelsublist if 'no load' not in x]
+    fig, ax = plt.subplots(figsize=(10,4))
+    hsv = plt.get_cmap('hsv')
+    colors = hsv(np.linspace(0, 0.9, len(labelsublist)))
+    for i,label in enumerate(labelsublist):
+        ax.scatter(df[df['label']==labellist.index(label)].real_power, np.zeros(len(df[df['label']==labellist.index(label)].real_power)), label=label, color=colors[i], linewidths = 0.01)#, marker='.')
+        ax.legend(ncol =4)
+    plt.xlabel('Active Power [W]')
+    ax.get_yaxis().set_visible(False)
+    plt.show()
 
 def normalize(df):
     result = df.copy()

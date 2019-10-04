@@ -24,10 +24,12 @@ plt.close('all')
     
 df = pd.DataFrame(columns=columns)
 appliancesublist = ['laptop', 'heatbulb', 'fluorescentlight', 'kettle', 'fan2']
+
 y5, df5 = extractdifffeaturevectors('data/5_MassiveSwitching/featurescomplete', appliancesublist) 
 y5 = changelabeltoeventbased(y5)
 
 y2, df2 = extractdifffeaturevectors('data/2_WithSwitchingEvents/featurescomplete', appliancesublist)
+y2 = changelabeltoeventbased(y2)
 
 y5.extend(y2)
 dfmodel = df5.append(df2, ignore_index=True)
