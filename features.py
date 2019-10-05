@@ -12,7 +12,7 @@ import pandas as pd
 import os
 import time
 
-columns = {'apparent_power', 'real_power', 'reactive_power',
+columns = {'apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
 'imag21', 'imag23', 'imag25', 'imag27', 'imag29',
@@ -91,13 +91,13 @@ def extractfeatures(file):
         instpower = np.multiply(currentwindowed,voltagewindowed)
         realpower = np.sum(instpower)/len(instpower)
         apparentpower = voltagerms*currentrms
-        reactivepower=np.sqrt(apparentpower**2/realpower**2)
+        nonactivepower=np.sqrt(apparentpower**2/realpower**2)
                 
         data.loc[i] = pd.Series({
                         
                 'apparent_power': apparentpower, 
                 'real_power': realpower, 
-                'reactive_power': reactivepower, 
+                'nonactive_power': nonactivepower, 
                 
                 'real01': np.abs(np.real((currentrfft[ 5]))), 
                 'real03': np.abs(np.real((currentrfft[15]))), 

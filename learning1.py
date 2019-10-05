@@ -42,8 +42,8 @@ dfunseen = df300.append(df301).append(df302)
 
 y = dfmodel.label.astype(int).values 
 
-#df1 = df1.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'reactive_power'], axis=1)
-dfmodel = dfmodel[['apparent_power', 'real_power', 'reactive_power',
+#df1 = df1.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'nonactive_power'], axis=1)
+dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
 #'imag21', 'imag23', 'imag25', 'imag27', 'imag29',
@@ -86,7 +86,7 @@ evaluate(y_test, y_pred, labellist, plotconfusionmatrix="1OnModel1")
 #
 yu = dfunseen.label.astype(int).values 
 #dfunseen = dfunseen.drop(['label'], axis=1)
-dfunseen = dfunseen[['apparent_power', 'real_power', 'reactive_power',
+dfunseen = dfunseen[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
 #'imag21', 'imag23', 'imag25', 'imag27', 'imag29',

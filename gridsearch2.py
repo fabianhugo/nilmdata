@@ -75,7 +75,7 @@ dfmodel = df5.append(df2)
 y = y5
 
 
-dfmodel = dfmodel[['apparent_power', 'real_power', 'reactive_power',
+dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
 #'imag21', 'imag23', 'imag25', 'imag27', 'imag29',

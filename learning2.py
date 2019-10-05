@@ -38,7 +38,7 @@ y = y5
 
 
 #X = dfmodel.drop(['label'], axis=1)
-dfmodel = dfmodel[['apparent_power', 'real_power', 'reactive_power',
+dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
 #'imag21', 'imag23', 'imag25', 'imag27', 'imag29',
@@ -89,7 +89,7 @@ dfunseen1=dfunseen1.append(dfunseen4, ignore_index=True)
 dfunseen=dfunseen1
 #Xunseen = dfunseen.drop(['label'],axis=1)
 
-dfunseen = dfunseen[['apparent_power', 'real_power', 'reactive_power',
+dfunseen = dfunseen[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
 #'imag21', 'imag23', 'imag25', 'imag27', 'imag29',
