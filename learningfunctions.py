@@ -6,7 +6,7 @@ Created on Wed Aug 21 11:21:18 2019
 @author: burr
 """
 import numpy as np
-import sklearn as sk
+
 from sklearn.model_selection import KFold
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -14,6 +14,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 
+from sklearn.utils.multiclass import unique_labels
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 from matplotlib import pyplot as plt
 import scikitplot as skplt
 import pandas as pd
@@ -51,16 +53,16 @@ def Kfold_validation(X_new,Y_new, model = 'LDA'):
     
     
 def evaluate(y_true, y_pred, labellist, plotconfusionmatrix=False, cmfontsize=7):
-    precision, recall, fbeta, support = sk.metrics.precision_recall_fscore_support(y_true, y_pred, average='weighted', warn_for='')
-    Acc = sk.metrics.accuracy_score(y_true, y_pred)
+    precision, recall, fbeta, support = precision_recall_fscore_support(y_true, y_pred, average='weighted', warn_for='')
+    Acc = accuracy_score(y_true, y_pred)
     print ('Accuracy= %.2f' % (Acc*100))
     print ('Preccision= %.2f' % (precision*100))
     print ('Recall = %.2f' % (recall*100))
     print ('Fbeta = %.2f' % (fbeta*100))
     if len(plotconfusionmatrix)>0:
         plt.ioff()
-        plt.ioff()
         fig, ax = plt.subplots(figsize=(11,10))#, dpi=300)
+
         skplt.metrics.plot_confusion_matrix(decodelabels(y_true), decodelabels(y_pred), normalize=True, text_fontsize = cmfontsize, x_tick_rotation=-50, title=' ',ax=ax)
         saveto = path.join('plots','cm')
         if not path.isdir(saveto):

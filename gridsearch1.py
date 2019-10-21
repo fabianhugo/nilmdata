@@ -116,7 +116,7 @@ for train_index, test_index in kf.split(X):
     y_train, y_test = y[train_index], y[test_index]
 #    model1 = RandomForestClassifier(n_estimators =1000,min_samples_leaf=1, max_leaf_nodes=50,random_state=10)
 #    model1 = KNeighborsClassifier(n_neighbors=1)
-#    model1 = SVC(C=1, gamma = 0.0001, kernel='linear')
+    model1 = SVC(C=1, gamma = 0.0001, kernel='linear')
 #    model1 = MLPClassifier()
         
     model1.fit( X_train, y_train)

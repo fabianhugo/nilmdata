@@ -79,9 +79,9 @@ model1 = SVC(C=1, gamma=0.0001, kernel='linear')
 model1.fit(X_train, y_train)
 y_pred = model1.predict(X_test)
 print('On Model Dataset')
-evaluate(y_test, y_pred, labellist, plotconfusionmatrix="1OnModel1",cmfontsize=0)
-print_top5(dfmodel.columns, model1)
-plotfeatureimportance(model1, dfmodel)
+evaluate(y_test, y_pred, labellist, plotconfusionmatrix="1OnModel1")
+#print_top5(dfmodel.columns, model1)
+#plotfeatureimportance(model1, dfmodel)
 
 #
 yu = dfunseen.label.astype(int).values 
