@@ -74,6 +74,7 @@ dfmodel = df5.append(df2)
 
 y = y5
 
+#dfmodel = dfmodel.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'nonactive_power'], axis=1)
 
 dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
@@ -93,7 +94,7 @@ dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 #
 ]]
 
-#X = dfmodel.drop(['label'], axis=1)
+
 X = dfmodel
 X = X.values
 

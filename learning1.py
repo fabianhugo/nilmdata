@@ -42,7 +42,7 @@ dfunseen = df300.append(df301).append(df302)
 
 y = dfmodel.label.astype(int).values 
 
-#df1 = df1.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'nonactive_power'], axis=1)
+#dfmodel = df1.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'nonactive_power'], axis=1)
 dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
@@ -50,15 +50,15 @@ dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 #'imag31', 'imag33', 'imag35', 'imag37', 'imag39',
 #'imag41', 'imag43', 'imag45', 'imag47', 'imag49',
 #'imag51', 'imag53', 'imag55', 'imag57', 'imag59',
-#
-#
+###
+###
 'real01', 'real03', 'real05', 'real07', 'real09',
 'real11', 'real13', 'real15', 'real17', 'real19',
 #'real21', 'real23', 'real25', 'real27', 'real29',
 #'real31', 'real33', 'real35', 'real37', 'real39',
 #'real41', 'real43', 'real45', 'real47', 'real49',
 #'real51', 'real53', 'real55', 'real57', 'real59',
-#
+###
 ]]
 X = dfmodel.values
 
@@ -68,7 +68,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 
 #Kfold_validation(X_train, y_train, model='MLP')
 
-#model1 = RandomForestClassifier(n_estimators =1000,min_samples_leaf=1, max_leaf_nodes=10,random_state=10)
+#model1 = RandomForestClassifier(n_estimators =1000,min_samples_leaf=1, max_leaf_nodes=50,random_state=10)
 #model1 = KNeighborsClassifier(n_neighbors=20, leaf_size=10)
 model1 = SVC(C=1, gamma=0.0001, kernel='linear')
 #model1 = LinearDiscriminantAnalysis()
@@ -79,13 +79,13 @@ model1 = SVC(C=1, gamma=0.0001, kernel='linear')
 model1.fit(X_train, y_train)
 y_pred = model1.predict(X_test)
 print('On Model Dataset')
-evaluate(y_test, y_pred, labellist, plotconfusionmatrix="1OnModel1")
-#print_top5(dfmodel.columns, model1)
-#plotfeatureimportance(model1, dfmodel)
+evaluate(y_test, y_pred, labellist, plotconfusionmatrix="1OnModel1",cmfontsize=0)
+print_top5(dfmodel.columns, model1)
+plotfeatureimportance(model1, dfmodel)
 
 #
 yu = dfunseen.label.astype(int).values 
-#dfunseen = dfunseen.drop(['label'], axis=1)
+#dfunseen = dfunseen.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'nonactive_power'], axis=1)
 dfunseen = dfunseen[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
 'imag11', 'imag13', 'imag15', 'imag17', 'imag19',
@@ -101,7 +101,7 @@ dfunseen = dfunseen[['apparent_power', 'real_power', 'nonactive_power',
 #'real31', 'real33', 'real35', 'real37', 'real39',
 #'real41', 'real43', 'real45', 'real47', 'real49',
 #'real51', 'real53', 'real55', 'real57', 'real59',
-#
+##
 ]]
 Xu = dfunseen.values
 

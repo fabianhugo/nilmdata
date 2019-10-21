@@ -74,6 +74,7 @@ df4 = readfeatures('data/4_LaptopStates/featurescomplete', appliancelist)
 dfmodel = df1.append(df4)
 
 y = dfmodel.label.astype(int).values 
+dfmodel = dfmodel.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'nonactive_power'], axis=1)
 
 dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 'imag01', 'imag03', 'imag05', 'imag07', 'imag09',
@@ -93,7 +94,7 @@ dfmodel = dfmodel[['apparent_power', 'real_power', 'nonactive_power',
 #
 ]]
 
-X = dfmodel.drop(['label'], axis=1)
+X = dfmodel
 X = X.values
 
 X_train = X
@@ -114,7 +115,7 @@ Accuracy = 0
 for train_index, test_index in kf.split(X):
     X_train, X_test = X[train_index], X[test_index]
     y_train, y_test = y[train_index], y[test_index]
-#    model1 = RandomForestClassifier(n_estimators =10,min_samples_leaf=4, max_leaf_nodes=12,random_state=10)
+#    model1 = RandomForestClassifier(n_estimators =1000,min_samples_leaf=1, max_leaf_nodes=50,random_state=10)
 #    model1 = KNeighborsClassifier(n_neighbors=1)
     model1 = SVC(C=1, gamma = 0.0001, kernel='linear')
 #    model1 = MLPClassifier()

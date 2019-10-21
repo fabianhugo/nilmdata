@@ -50,7 +50,7 @@ def Kfold_validation(X_new,Y_new, model = 'LDA'):
     print ('AccuracyKFOLD = %.2f \n' % (Accuracy*100))
     
     
-def evaluate(y_true, y_pred, labellist, plotconfusionmatrix=False):
+def evaluate(y_true, y_pred, labellist, plotconfusionmatrix=False, cmfontsize=7):
     precision, recall, fbeta, support = sk.metrics.precision_recall_fscore_support(y_true, y_pred, average='weighted', warn_for='')
     Acc = sk.metrics.accuracy_score(y_true, y_pred)
     print ('Accuracy= %.2f' % (Acc*100))
@@ -60,12 +60,12 @@ def evaluate(y_true, y_pred, labellist, plotconfusionmatrix=False):
     if len(plotconfusionmatrix)>0:
         plt.ioff()
         plt.ioff()
-        fig, ax = plt.subplots(figsize=(11,10), dpi=300)
-        skplt.metrics.plot_confusion_matrix(decodelabels(y_true), decodelabels(y_pred), normalize=True, text_fontsize = 7, x_tick_rotation=-50, title=' ',ax=ax)
+        fig, ax = plt.subplots(figsize=(11,10))#, dpi=300)
+        skplt.metrics.plot_confusion_matrix(decodelabels(y_true), decodelabels(y_pred), normalize=True, text_fontsize = cmfontsize, x_tick_rotation=-50, title=' ',ax=ax)
         saveto = path.join('plots','cm')
         if not path.isdir(saveto):
             makedirs(saveto)
-        fig.savefig(path.join(saveto,plotconfusionmatrix+'.png'), dpi=300)
+        fig.savefig(path.join(saveto,plotconfusionmatrix+'.svg'))#, dpi=300)
         plt.ion()
 #        plt.show()
 
