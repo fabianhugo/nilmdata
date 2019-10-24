@@ -72,7 +72,7 @@ y2, df2 = extractdifffeaturevectors('data/2_WithSwitchingEvents/featurescomplete
 y5.extend(y2)
 dfmodel = df5.append(df2)
 
-y = y5
+y = np.array(y5)
 
 #dfmodel = dfmodel.drop(['label'], axis=1)#, 'real_power', 'apparent_power', 'nonactive_power'], axis=1)
 
@@ -109,7 +109,24 @@ gridsearch4 = gridsearchmlp(X_train, y_train)
 
     
 
-
+# 10 Fold Validation
+NFOLDS = 10
+np.random.seed(10)
+kf = KFold(n_splits=NFOLDS,shuffle=True, random_state=1) #leave one out cross validation, on all samples
+Accuracy = 0
+for train_index, test_index in kf.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+#    model1 = RandomForestClassifier(n_estimators =1000,min_samples_leaf=1, max_leaf_nodes=50,random_state=10)
+#    model1 = KNeighborsClassifier(n_neighbors=1)
+    model1 = SVC(C=1, gamma = 0.0001, kernel='linear')
+#    model1 = MLPClassifier()
+        
+    model1.fit( X_train, y_train)
+    Acc = model1.score(X_test,y_test)
+    Accuracy = Accuracy + Acc
+Accuracy = Accuracy/float(NFOLDS)
+print ('AccuracyKFOLD = %.2f \n' % (Accuracy*100))
 
 
 

@@ -62,7 +62,7 @@ X_train = X
 y_train = y
 X_train, X_test, y_train, y_test = sk.model_selection.train_test_split(X, y, test_size=0.33, random_state=12)
 
-model1 = RandomForestClassifier(n_estimators =1000,min_samples_leaf=1, max_leaf_nodes=50,random_state=10)
+model1 = RandomForestClassifier(n_estimators =1000,min_samples_leaf=1, max_leaf_nodes=10,random_state=10)
 #model1 = KNeighborsClassifier(n_neighbors=1, leaf_size=10)
 #model1 = SVC(C=0.001, gamma=0.0001, kernel='linear')
 
@@ -112,6 +112,6 @@ Xunseen = Xunseen.values
 
 
 y_unseenpred = model1.predict(Xunseen)
-evaluate(yunseen, y_unseenpred, labellist, plotconfusionmatrix="2OnUnseen31")
+evaluate(yunseen, y_unseenpred, labellist, plotconfusionmatrix="2OnUnseen3")
 
 
