@@ -19,17 +19,46 @@ experimentlist = ['1_WithoutSwitchingEvents', '2_WithSwitchingEvents', '4_Laptop
 def plotforthesis(path):
     timestamp_arr, ch0_arr, ch1_arr, marker_arr, label_arr, filename = readfile(path)
     
-    plt.figure()
-#    plt.title("")
-    plt.ylabel('Voltage [V]')
-    plt.xlabel('Time [s]')
-    plt.plot(timestamp_arr, (ch0_arr+ch0calib)*adctovolt, linewidth = 1, marker = '')
+    fig, (ax1, ax2) = plt.subplots(ncols=2, sharex=True, figsize = (10, 4))
+    fig.suptitle(appliancelistforplots[appliancelist.index(os.path.basename(filename).split('.')[0].split('_')[-1])])
+    ax1.set_xlim([0,0.04])
+    ax1.set_xticks([0, 0.02, 0.04])
+    ax1.set_title ('Voltage')
+    ax1.set_ylabel('[V]')
+    ax1.set_xlabel('Time [s]')
+    ax1.plot(timestamp_arr, (ch0_arr+ch0calib)*adctovolt, linewidth = 1, marker = '')
     
-    plt.figure()
-    plt.ylabel('Current [A]')
-    plt.xlabel('Time [s]')
-    plt.plot(timestamp_arr, (ch1_arr+ch1calib)*adctoamp, linewidth = 1)
+    ax2.set_xticks([0, 0.02, 0.04])
+    ax2.set_title ('Current')
+    ax2.set_ylabel('[A]')
+    ax2.set_xlabel('Time [s]')
+    ax2.plot(timestamp_arr, (ch1_arr+ch1calib)*adctoamp, linewidth = 1)
     
+    current = (ch1_arr+ch1calib)*adctoamp
+    voltage = (ch0_arr+ch0calib)*adctovolt
+    fs = 10000
+
+    fig, (ax1, ax2) = plt.subplots(ncols=2, sharex=True, figsize = (10, 4))
+    fig.suptitle(appliancelistforplots[appliancelist.index(os.path.basename(filename).split('.')[0].split('_')[-1])])
+    ax1.set_title('Voltage Spectrum')
+    ax1.set_ylabel('Amplitude [dB]')
+    ax1.set_ylim((-40, 60))
+    ax1.set_xlim((0,1000))
+    ax2.set_title('Current Spectrum')
+    ax2.set_ylabel('Amplitude [dB]')
+    ax2.set_ylim((-90, 30))    
+    
+    plt.xlabel('Frequency [Hz]') 
+    currentrfft = np.fft.rfft(current*np.hanning(len(current)))
+    currentrfft = currentrfft/len(currentrfft)*2
+    voltagerfft = np.fft.rfft(voltage*np.hanning(len(voltage)))
+    voltagerfft = voltagerfft/len(voltagerfft)*2
+
+    
+    rfftfreqs = np.fft.rfftfreq(len(current), 1/fs)
+    ax1.plot(rfftfreqs, 20*np.log10(np.abs(voltagerfft)))    
+    ax2.plot(rfftfreqs, 20*np.log10(np.abs(currentrfft)))    
+ 
 
 def plotdata(timestamp_arr, ch0_arr, ch1_arr, marker_arr, label_arr, filename):
     
@@ -203,11 +232,11 @@ if __name__ == '__main__':
 #        plotappliancerffts('2_WithSwitchingEvents', appliance)
 #        plotappliancerffts('4_LaptopStates', appliance)
     
-    for appliance in appliancelist:
+#    for appliance in appliancelist:
 #        plotappliancespectograms('1_WithoutSwitchingEvents', appliance)
 #        plotappliancespectograms('2_WithSwitchingEvents', appliance)
 #        plotappliancespectograms('4_LaptopStates', appliance)
-        plotappliancespectograms('5_MassiveSwitching', appliance)
+#        plotappliancespectograms('5_MassiveSwitching', appliance)
 
 #    plotappliancespectograms('3_MultipleDevices_Order00', 'order')
 #    plotappliancespectograms('3_MultipleDevices_Order01', 'order')
