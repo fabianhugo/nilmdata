@@ -63,7 +63,7 @@ def evaluate(y_true, y_pred, labellist, plotconfusionmatrix=False, cmfontsize=7)
         plt.ioff()
         fig, ax = plt.subplots(figsize=(11,10))#, dpi=300)
 
-        skplt.metrics.plot_confusion_matrix(decodelabels(y_true), decodelabels(y_pred), normalize=True, text_fontsize = cmfontsize, x_tick_rotation=-50, title=' ',ax=ax)
+        skplt.metrics.plot_confusion_matrix(decodelabels(y_true), decodelabels(y_pred), normalize=True, text_fontsize = cmfontsize, x_tick_rotation=90, title=' ',ax=ax)
         ax.images[-1].colorbar.remove()
         saveto = path.join('plots','cm')
         if not path.isdir(saveto):
